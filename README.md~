@@ -1,0 +1,9 @@
+#Display tablet to regular tablet
+The purpose of this project is to use a tablet's display as mouse input to echo at another monitor, essentially working as a regular graphic tablet.
+
+Language choosen: C
+OS: Linux Mint 21.2
+
+##Log
+###**Preface**
+This project has been on my mind for about 6 months now I'd say, didn't really track it from the beggining, and the idea occured to me as I was using a tablet with display that I bought as a motivator tog et back to drawing. Using C was decided as it is one of 2 languages I use at work, the other one being COBOL (_Yeah, you read that right, and I'm as zoomer by the way_)
