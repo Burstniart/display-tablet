@@ -33,3 +33,10 @@ Well that wasn't as easy as I initially thought.
 Xinput does give back the input from different devices, but now the question is how do I reproduce it?. This lead me to X11 and some test code courtsey of chatGPT pointed me xorg-dev & libx11-dev
 
 Some really nice people at the notorious site known as 4chan have pointed me to SDL & SFML, don't say people there aren't nice sometimes ^-^
+
+***
+
+Another update before hitting the hay for the day
+Started to look into SDL, apparently it's a library that lets developers access low level hardware, makes sense considering my current goal is to capture mouse events, and most of the documentation I could find seems pretty old but while looking around I realised a lot of this informations is aimed towards game development, which is interesting, first I get a sense of directino with xinput and know sdl is leading me towarsd that path.
+Anyhow I found a tutorial about reading the mouse which is an aiming exercise for games, makes sense, and before I could try it out I found myself encountering something new: cmake
+Cmake is an automation tool for creating builds and the game tutorials that seem more promesing use it to build on top of it, so I just spent quite some time figuring thiss thing out, also as a side note, I dont know c++ and apparently this thing is build towards C++ so it's taking more brain power to kinda get what's going on but as long as I make progress I can walk back on my steps and figure how it works, so far making it work is my first priiority.
