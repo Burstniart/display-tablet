@@ -69,3 +69,17 @@ Am I writting C++, I dunno
 '''
 
 so this thing actually gets the coordinates of the mouse  and the button pressed, I'm not so familiar with event driven coding soooo this ought to be interesting, but at least now I can capture the mouse position, also apparently 'SDL_GetMouseState(*x,*y)' gets the position relative to the created window, this will be useful to later map out waht happens inside the window to another monitor
+
+***
+
+As I'm reading this tutorials and documentation i think of this gameplan:
+- Test a way to move the mouse to a certain position & make it click or something like that
+- Make a loop to constantly get mouse position & events
+- Find a way to get a monitor, it's specifications and a way to map it to point to it
+
+***
+
+I'm back at it, trying to test this list thing
+
+So yeah, teh current version requires a bmp image to launch, while testing that I learned about the main loop in the application and that led me to look up what type of events one can be on the look for, which lead me to capture mouse motion, once I learned more about the event structure it was quite obvious the way to capture motion within the window, pog.
+
