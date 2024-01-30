@@ -113,11 +113,18 @@ int main( int argc, char* args[] )
 	  while( !quit )
 	    {while(SDL_PollEvent(&e) != 0)
 		{
+		  int x,y;
+		  Uint32 buttons = SDL_GetGlobalMouseState(&x, &y);
+		  printf("%u buttons, x:%d &  y:%d \n", buttons,x,y);
 		  if(e.type == SDL_MOUSEMOTION)
 		    {
 		      printf("We got a motion event.\n");
-		      printf("Current mouse position is: (%d, %d)\n", e.motion.x, e.motion.y);
+		      printf("Current mouse position is: (%d, %d) at window %d\n", e.motion.x, e.motion.y, e.motion.windowID);
 		    }
+		  if(e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP)
+		    printf("button is: %d\n", e.button.state);
+		  
+		    
 		  if(e.type == SDL_QUIT)
 		    quit = true;
 		}

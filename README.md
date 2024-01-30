@@ -83,3 +83,7 @@ I'm back at it, trying to test this list thing
 
 So yeah, teh current version requires a bmp image to launch, while testing that I learned about the main loop in the application and that led me to look up what type of events one can be on the look for, which lead me to capture mouse motion, once I learned more about the event structure it was quite obvious the way to capture motion within the window, pog.
 
+***
+
+Mouse events can now be captured, inside and outside teh window, alse a new test case has been used to see how to identify different displays, currently testing to see how to get all necessary propoerties
+Functionality wise the only thing that's left is figure out how to duplicate mouse input, either that or replicate the input onto the other display
