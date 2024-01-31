@@ -87,3 +87,14 @@ So yeah, teh current version requires a bmp image to launch, while testing that 
 
 Mouse events can now be captured, inside and outside teh window, alse a new test case has been used to see how to identify different displays, currently testing to see how to get all necessary propoerties
 Functionality wise the only thing that's left is figure out how to duplicate mouse input, either that or replicate the input onto the other display
+
+***
+
+PollEvent retreives the events in queue, while looking through the list of functions available I came accross PushEvent, now that is what I need, as the description says "The event queue can actually be used as a two way communication channel. Not only can events be read from the queue, but the user can also push their own events onto it. event is a pointer to the event structure you wish to push onto the queue."
+
+Surely that's it
+
+well I can now move the cursor  where i want to, but if i move the cursor away from my window how could it read the next input?
+gotta poke around to create the mouse events without affeting the current state of the cursor, that way the cursor could be locked inside the window in the tablet and still have it create mpuse events, create mouse events... i can create mouse events, just not sure how to map it to outside the window
+
+Just gotta figure that one out

@@ -107,6 +107,9 @@ int main( int argc, char* args[] )
 	  //update the surface
 	  SDL_UpdateWindowSurface(gWindow);
 
+	  //hide cursor
+	  //	  SDL_ShowCursor(SDL_DISABLE);
+	  
 	  //hack to get window to stay up
 	  SDL_Event e;
 	  bool quit = false;
@@ -123,8 +126,33 @@ int main( int argc, char* args[] )
 		    }
 		  if(e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP)
 		    printf("button is: %d\n", e.button.state);
+
+		  //grab cursor
+		  /*
+		  if(e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
+		    SDL_SetWindowMouseGrab(gWindow, SDL_TRUE);
+		  else if(e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT)
+		    SDL_SetWindowMouseGrab(gWindow, SDL_FALSE);
+		  */
+
+		  //Create mouse event
 		  
-		    
+		  if(e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT)
+		    {
+		      SDL_Event mEvent;
+		      /*testing
+		      mEvent.type = mEvent.button.type = SDL_MOUSEBUTTONDOWN;
+		      mEvent.button.button = SDL_BUTTON_LEFT;
+		      mEvent.button.x = 600;
+		      mEvent.button.y = 400;
+		      mEvent.button.state = SDL_PRESSED;
+		      */
+
+		      mEvent.type =  SDL_WarpMouseGlobal(400, 600);
+		      
+		      SDL_PushEvent(&mEvent);
+		    }
+		  
 		  if(e.type == SDL_QUIT)
 		    quit = true;
 		}
