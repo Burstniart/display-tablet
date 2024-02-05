@@ -98,3 +98,42 @@ well I can now move the cursor  where i want to, but if i move the cursor away f
 gotta poke around to create the mouse events without affeting the current state of the cursor, that way the cursor could be locked inside the window in the tablet and still have it create mpuse events, create mouse events... i can create mouse events, just not sure how to map it to outside the window
 
 Just gotta figure that one out
+
+****
+
+Well maybe ill try to return the cursor to the tablet display on release, cause the current state doesnt bring it back once I click on the main monitor
+In other news, I found a way to use xinput to add 2 or more mouse cursors at a time, oddly enough the tablets cursor using the pen doesnt seem to be able to ignore this instructions
+What I mean is: when I reattach a cursor to a new master using a mouse, 2 mouse cursors are displayed on screen and the two of them move independently, but when I try to reattach the tablets cursor with a new master keeps pulling the other cursor and although two mouse cursors are displayed on the screens, only one is functional
+
+Gotta do some pillow talk, maybe that'll do.
+
+***
+
+
+Test scenario:
+
+What if when mouse button is pressed whithin tablet's display area I move the cursor to the equivalent in the main monitor,repeat the mouse button  press & on release I warp back the mouse cursor
+
+
+Where I'm at mentally:
+
+Objective: Use the tablet's displlay as mouse input for the laptop's main monitor.
+
+Solution A: Mirror displays
+In the systems setting sett the tablet's display to mirror the laptop's monitor, that way all input from the tablet wil be applied to the laptop's monnitor(since it's the same)
+
+Pros: Simple & stright forward.
+Cons: While using both monitors switching requires to accessing the system's configuration and changing the current setting, taking a momento to rearenge the windows to the now smaller space.
+Propositon: Create a shortcut that runs a script to toggle between joining the displays and mirroring them.
+Side effects: Windows rearrenging as the switch is toggled and it takes seconds, which in user time is too much if the user only intended to click one thing before returning to the tablet's display(such as skipping a song/video or openning a mail/message).
+
+Solution B: Replicate mouse input
+This solutions aims at creating a window located in the tablets display which will take the user's mouse input and replicate it onto the laptop's display.
+
+Pros: Most tailored option
+Cons: Requires the most maintainance
+Propostion: Currently on development
+Side effects: The tablet's stylus is constantly pulling the mouse cursor and the stylu's tip preassure sensitivity constantly messes with the button click state for the mouse cursor which conflicts witht he programs logic and often causes unexpected results.
+
+Solution C: SSH into the computer with graphical inteerface?
+Is this viable? Can I ssh into my computer, run a graphic interface to display my main monitor and give the mouse input through the tablet so it is replicated to the laptop's display?

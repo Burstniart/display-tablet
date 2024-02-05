@@ -116,27 +116,84 @@ int main( int argc, char* args[] )
 	  while( !quit )
 	    {while(SDL_PollEvent(&e) != 0)
 		{
+		  
 		  int x,y;
-		  Uint32 buttons = SDL_GetGlobalMouseState(&x, &y);
-		  printf("%u buttons, x:%d &  y:%d \n", buttons,x,y);
+		  Uint32 Buttons = SDL_GetGlobalMouseState(&x, &y);
+		  printf("%u buttons, x:%d &  y:%d \n", Buttons,x,y);
+		  
+		  
+		  int currentX, currentY, toX, toY;
+		  int *pointX, *pointY;
+		  
+		  Uint32 buttons = SDL_GetGlobalMouseState(&currentX, &currentY);
+ 		  
 		  if(e.type == SDL_MOUSEMOTION)
 		    {
-		      printf("We got a motion event.\n");
-		      printf("Current mouse position is: (%d, %d) at window %d\n", e.motion.x, e.motion.y, e.motion.windowID);
-		    }
-		  if(e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP)
-		    printf("button is: %d\n", e.button.state);
+		      SDL_Event dEvent;
+		      //if(e.type == SDL_MOUSEBUTTONDOWN)
+				
+			  //maybe try to return the cursor to previous position on button release
+			  if(currentX > 1365){
+			    pointX = &currentX;
+			    pointY = &currentY;
+			    //going a bit to far tot he righ, fix later
+			    toX = *pointX - 1366;
+			    toY = *pointY;
+			    //			    printf("i guess point to %d\n",toX);
+			    //first get the values right, then unlck the function
+			    
+			    if(e.type == SDL_MOUSEMOTION && e.motion.state == SDL_PRESSED)
+			      {
+				printf("Right button is being pressed\n");
+				printf("Current mouse position is: (%d, %d)\nI guess point to X:%d\n", currentX, currentY, toX);
 
-		  //grab cursor
+				dEvent.type = SDL_WarpMouseGlobal(toX, toY);
+				SDL_PushEvent(&dEvent);
+
+				dEvent.type = SDL_MOUSEBUTTONDOWN;
+				dEvent.button.button = SDL_BUTTON_LEFT;
+				dEvent.button.state = SDL_PRESSED;
+				SDL_PushEvent(&dEvent);
+			      }
+			    
+			    if(e.type == SDL_MOUSEMOTION && e.motion.state == SDL_RELEASED)
+			      {
+				printf("Right button has been released\n");
+
+			      }
+			    
+			    //Not yet chief
+			    //dEvent.type = SDL_WarpMouseGlobal(toX,500);
+			    //SDL_PushEvent(&dEvent);
+			    
+			  }
+			  //Not yet B
+			  //dEvent.type = SDL_WarpMouseGlobal(currentX, currentY);
+			  SDL_PushEvent(&dEvent);
+			  
+			  
+			  //			  printf("We got a motion event.\n");
+			  
+			  
+			  //			  printf("Current mouse position is: (%d, %d) at window %d, relative x & y:(%d, %d) at display %d\n", e.motion.x, e.motion.y, e.motion.windowID, e.motion.xrel, e.motion.yrel,SDL_GetWindowDisplayIndex( gWindow ));
+			
+		    }
+		  
+		  if(e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP)
+		    {
+		      printf("button is: %d\n", e.button.state);		      
+		    }
+		  
+		  //grab cursor - comment for now
 		  /*
 		  if(e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
 		    SDL_SetWindowMouseGrab(gWindow, SDL_TRUE);
-		  else if(e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT)
+		  else if(e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT)
 		    SDL_SetWindowMouseGrab(gWindow, SDL_FALSE);
 		  */
 
-		  //Create mouse event
-		  
+		  //Create mouse event - comment for now
+		  /*
 		  if(e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_RIGHT)
 		    {
 		      SDL_Event mEvent;
@@ -148,10 +205,11 @@ int main( int argc, char* args[] )
 		      mEvent.button.state = SDL_PRESSED;
 		      */
 
-		      mEvent.type =  SDL_WarpMouseGlobal(400, 600);
+		  //mEvent.type =  SDL_WarpMouseGlobal(400, 600);
 		      
-		      SDL_PushEvent(&mEvent);
-		    }
+		  //  SDL_PushEvent(&mEvent);
+		      
+		  //}
 		  
 		  if(e.type == SDL_QUIT)
 		    quit = true;
